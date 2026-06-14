@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self'" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Magenta Launcher</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body oncontextmenu="return false">
+  <div id="boot-splash" class="boot-splash" aria-hidden="true">
+    <img class="boot-logo" src="../assets/logo-m-transparent.png" alt="" />
+    <div class="boot-bar"><span id="boot-bar-fill"></span></div>
+    <p class="boot-label" id="boot-label">Initializing...</p>
+  </div>
+
+  <div id="app" class="window-drag is-booting">
+    <section id="view-auth" class="view view-active">
+      <div class="win-controls win-controls-auth no-drag">
+        <button class="win-btn" id="btn-min-auth" type="button" aria-label="Minimize">
+          <svg class="ico"><use href="icons.svg#i-min"/></svg>
+        </button>
+        <button class="win-btn close" id="btn-close-auth" type="button" aria-label="Close">
+          <svg class="ico"><use href="icons.svg#i-close"/></svg>
+        </button>
+      </div>
+      <div class="auth-shell">
+        <div class="auth-left">
+          <div class="auth-brand anim-in" style="--d:0ms">
+            <img class="auth-logo" src="../assets/logo-m-transparent.png" alt="Magenta" />
+          </div>
+          <h1 class="anim-in" id="auth-title" style="--d:60ms">Welcome back!</h1>
+          <p class="muted anim-in" id="auth-subtitle" style="--d:120ms">Sign in to your account</p>
+
+          <label class="field anim-in no-drag" style="--d:180ms">
+            <span>Username</span>
+            <div class="input-wrap">
+              <svg class="ico"><use href="icons.svg#i-user"/></svg>
+              <input id="auth-login" type="text" placeholder="Enter your Name" autocomplete="username" />
+            </div>
+          </label>
+
+          <label class="field anim-in no-drag" style="--d:240ms">
+            <span>Password</span>
+            <div class="input-wrap has-eye">
+              <svg class="ico"><use href="icons.svg#i-key"/></svg>
+              <input id="auth-password" type="password" placeholder="Enter your Password" autocomplete="current-password" />
+              <button class="eye no-drag" id="toggle-pass" type="button" aria-label="Show password">
+                <svg class="ico"><use href="icons.svg#i-eye" id="eye-icon-use"/></svg>
+              </button>
+            </div>
+          </label>
+
+          <p class="error no-drag" id="auth-error"></p>
+
+          <button class="btn primary no-drag anim-in" id="auth-submit" type="button" style="--d:300ms">
+            <span id="auth-submit-text">Sign In</span>
+          </button>
+
+          <button class="link-btn no-drag anim-in" id="auth-toggle" type="button" style="--d:420ms">
+            <span id="auth-toggle-text">Don't have an account? Register</span>
+          </button>
+        </div>
+
+        <div class="auth-right">
+          <div class="promo-track">
+            <div class="promo-slide active" data-slide="0">
+              <svg class="ico xl promo-ico"><use href="icons.svg#i-shield"/></svg>
+              <h2>Protection</h2>
+              <p>Local auth & C++ protection</p>
+            </div>
+            <div class="promo-slide" data-slide="1">
+              <svg class="ico xl promo-ico"><use href="icons.svg#i-cart"/></svg>
+              <h2>Lightweight</h2>
+              <p>JARs downloaded from GitHub on demand</p>
+            </div>
+            <div class="promo-slide" data-slide="2">
+              <svg class="ico xl promo-ico"><use href="icons.svg#i-home"/></svg>
+              <h2>Magenta</h2>
+              <p>Stable 1.16.5 и Beta 1.21.4 в одном лаунчере</p>
+            </div>
+          </div>
+          <div class="promo-dots no-drag">
+            <span class="dot active" data-dot="0"></span>
+            <span class="dot" data-dot="1"></span>
+            <span class="dot" data-dot="2"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-shell" class="view">
+      <header class="shell-top">
+        <div class="shell-users">
+          <div class="user-chip anim-pop" id="user-chip-main">
+            <div class="avatar" id="user-avatar">M</div>
+            <div>
+              <div class="user-name" id="user-name">-</div>
+            </div>
+          </div>
+        </div>
+        <div class="win-controls no-drag">
+          <button class="win-btn" id="btn-min" type="button" aria-label="Minimize">
+            <svg class="ico"><use href="icons.svg#i-min"/></svg>
+          </button>
+          <button class="win-btn close" id="btn-close" type="button" aria-label="Close">
+            <svg class="ico"><use href="icons.svg#i-close"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="shell-body">
+        <aside class="sidebar">
+          <div class="side-logo">
+            <img class="logo-m" src="../assets/logo-m-transparent.png" alt="Magenta" />
+          </div>
+          <button class="nav-btn active no-drag" data-nav="home" type="button" title="Home">
+            <svg class="ico"><use href="icons.svg#i-home"/></svg>
+          </button>
+          <button class="nav-btn no-drag" data-nav="settings" type="button" title="Settings">
+            <svg class="ico"><use href="icons.svg#i-settings"/></svg>
+          </button>
+          <button class="nav-btn bottom no-drag" id="btn-logout" type="button" title="Logout">
+            <svg class="ico"><use href="icons.svg#i-logout"/></svg>
+          </button>
+        </aside>
+
+        <main class="content">
+          <div class="page-stack">
+            <div id="page-home" class="page page-active">
+              <article class="game-card anim-card" id="card-stable" data-client="stable">
+                <div class="game-bg stable-bg"></div>
+                <div class="game-overlay"></div>
+                <div class="card-loader no-drag" id="loader-stable" hidden>
+                  <div class="loader-ring-wrap">
+                    <svg class="loader-ring" viewBox="0 0 120 120" aria-hidden="true">
+                      <circle class="ring-bg" cx="60" cy="60" r="52" />
+                      <circle class="ring-fg" cx="60" cy="60" r="52" data-ring="stable" />
+                    </svg>
+                    <span class="loader-pct" data-pct="stable">0%</span>
+                  </div>
+                  <p class="loader-status" data-status="stable">Loading...</p>
+                </div>
+                <div class="game-info">
+                  <h2>Minecraft 1.16.5</h2>
+                  <span>Stable</span>
+                </div>
+                <button class="play-btn no-drag" data-play="stable" type="button" aria-label="Play">
+                  <svg class="ico play-ico"><use href="icons.svg#i-play"/></svg>
+                </button>
+              </article>
+
+              <article class="game-card anim-card blurred" id="card-beta" data-client="beta" style="--d:120ms">
+                <div class="game-bg beta-bg"></div>
+                <div class="game-overlay"></div>
+                <div class="card-loader no-drag" id="loader-beta" hidden>
+                  <div class="loader-ring-wrap">
+                    <svg class="loader-ring" viewBox="0 0 120 120" aria-hidden="true">
+                      <circle class="ring-bg" cx="60" cy="60" r="52" />
+                      <circle class="ring-fg" cx="60" cy="60" r="52" data-ring="beta" />
+                    </svg>
+                    <span class="loader-pct" data-pct="beta">0%</span>
+                  </div>
+                  <p class="loader-status" data-status="beta">Loading...</p>
+                </div>
+                <div class="game-info">
+                  <h2>Minecraft 1.21.4</h2>
+                  <span>Beta</span>
+                </div>
+                <button class="play-btn no-drag" data-play="beta" type="button" aria-label="Play">
+                  <svg class="ico play-ico"><use href="icons.svg#i-play"/></svg>
+                </button>
+              </article>
+            </div>
+
+            <div id="page-settings" class="page">
+              <div class="settings-block anim-in" style="--d:0ms">
+                <div class="settings-head">
+                  <span class="settings-label">RAM</span>
+                  <span class="ram-val"><span id="set-ram-num">2048</span>mb</span>
+                </div>
+                <div class="ram-row no-drag">
+                  <input id="set-ram" type="range" min="1024" max="8192" step="256" value="2048" />
+                </div>
+              </div>
+              <div class="settings-block settings-row anim-in" style="--d:100ms">
+                <span class="settings-label">Client Resources</span>
+                <button class="open-folder-btn no-drag" id="open-resources" type="button">
+                  <svg class="ico"><use href="icons.svg#i-folder"/></svg>
+                  <span>Open Folder</span>
+                </button>
+              </div>
+              <div class="settings-block anim-in" style="--d:200ms">
+                <div class="settings-head">
+                  <span class="settings-label">Activation</span>
+                </div>
+                <div class="input-wrap no-drag">
+                  <input id="activation-key" type="text" placeholder="Enter activation key" />
+                  <button class="btn primary no-drag" id="btn-activate" type="button" style="width:auto;padding:0 16px;height:38px;margin:0">
+                    <span>Activate</span>
+                  </button>
+                </div>
+              </div>
+              <input id="set-path" type="hidden" />
+            </div>
+          </div>
+        </main>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast no-drag" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>

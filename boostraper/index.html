@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boostraper</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <h1>Boostraper</h1>
+    <p class="sub">Установка Magenta Launcher</p>
+    <div class="bar"><div class="fill" id="fill"></div></div>
+    <p class="status" id="status">Подготовка...</p>
+  </div>
+  <script>
+    const fill = document.getElementById('fill');
+    const status = document.getElementById('status');
+    window.boost?.onProgress(({ pct, text }) => {
+      fill.style.width = `${pct}%`;
+      status.textContent = text;
+    });
+  </script>
+</body>
+</html>

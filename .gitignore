@@ -1,0 +1,10 @@
+node_modules/
+dist/
+dist-boostraper/
+build/
+.gradle/
+client/
+client-beta/
+*.log
+.DS_Store
+Thumbs.db

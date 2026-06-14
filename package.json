@@ -1,0 +1,54 @@
+{
+  "name": "magenta-launcher",
+  "version": "1.0.0",
+  "description": "Magenta DLC Launcher",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "electron .",
+    "prepare-client": "node scripts/prepare-client.js",
+    "prepare-client-beta": "node scripts/prepare-client-beta.js",
+    "prepare-beta-zip": "node scripts/prepare-beta-zip.js",
+    "prepare-stubs": "node scripts/prepare-stubs.js",
+    "build-cpp": "cd cpp-protection && build.bat",
+    "build": "electron-builder --win --x64",
+    "build:all": "npm run build-cpp && npm run build"
+  },
+  "build": {
+    "appId": "com.magenta.launcher",
+    "productName": "Magenta DLC Launcher",
+    "artifactName": "Magenta DLC Launcher.exe",
+    "icon": "assets/logo-m-transparent.png",
+    "directories": {
+      "output": "dist"
+    },
+    "forceCodeSigning": false,
+    "files": [
+      "electron/**/*",
+      "src/**/*",
+      "scripts/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "assets",
+        "to": "assets"
+      },
+      {
+        "from": "electron/nutprot.exe",
+        "to": "nutprot.exe"
+      }
+    ],
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "signAndEditExecutable": false
+    },
+    "portable": {}
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^26.8.1"
+  }
+}

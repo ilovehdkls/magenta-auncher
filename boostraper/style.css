@@ -1,0 +1,27 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #fff;
+  color: #111;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+.wrap { width: 320px; text-align: center; }
+h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+.sub { color: #666; font-size: 13px; margin-bottom: 22px; }
+.bar {
+  height: 8px;
+  background: #ececec;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #8b5cf6, #c4b5fd);
+  border-radius: 999px;
+  transition: width 0.35s ease;
+}
+.status { font-size: 12px; color: #444; }

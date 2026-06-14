@@ -1,0 +1,28 @@
+{
+  "name": "magenta-boostraper",
+  "version": "1.0.0",
+  "description": "Magenta Boostraper",
+  "main": "main.js",
+  "scripts": {
+    "prepare-icon": "powershell -ExecutionPolicy Bypass -File scripts/make-icon.ps1",
+    "build": "npm run prepare-icon && electron-builder --win --x64"
+  },
+  "build": {
+    "appId": "com.magenta.boostraper",
+    "productName": "Boostraper",
+    "artifactName": "Boostraper.exe",
+    "icon": "icon.png",
+    "directories": { "output": "../dist-boostraper" },
+    "forceCodeSigning": false,
+    "files": ["main.js", "index.html", "style.css", "preload.js", "package.json", "icon.ico", "icon.png"],
+    "extraResources": [],
+    "win": {
+      "target": ["portable"],
+      "signAndEditExecutable": false
+    }
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^26.8.1"
+  }
+}
