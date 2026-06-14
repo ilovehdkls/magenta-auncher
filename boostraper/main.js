@@ -9,7 +9,7 @@ const { spawn } = require('child_process');
 const LAUNCHER_REPO = {
   owner: process.env.LAUNCHER_OWNER || 'ilovehdkls',
   repo: process.env.LAUNCHER_REPO || 'magenta-auncher',
-  asset: process.env.LAUNCHER_ASSET || 'Magenta DLC Launcher.exe'
+  asset: process.env.LAUNCHER_ASSET || 'Magenta.DLC.Launcher.exe'
 };
 
 function launcherDownloadUrl() {
